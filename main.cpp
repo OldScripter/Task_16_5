@@ -166,7 +166,7 @@ void PrintSensorsState(int t_inside, int t_outside, bool movements)
 {
     printf("Temperature outside: %i C\n", t_outside);
     printf("Temperature in house: %i C\n", t_inside);
-    printf("Movements: %i\n", movements);
+    std::cout << "Movements: " << (movements ? "YES" : "NO") << "\n";
 }
 
 int main() {
@@ -186,9 +186,14 @@ int main() {
 
         //Input:
         std::string buffer_string;
+        std::getline(std::cin, buffer_string);
+
         std::string movement_string;
         std::string light_inside_string;
-        std::cin >> temperature_outside >> temperature_inside >> movement_string >> light_inside_string ;
+
+        std::stringstream b(buffer_string);
+        b >> temperature_outside >> temperature_inside >> movement_string >> light_inside_string;
+
         movement = (movement_string == "yes");
 
         //Print sensors state:
